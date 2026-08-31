@@ -1,0 +1,29 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite the paper in preferred-citation."
+title: "LoRA-KV-Cache"
+type: software
+authors:
+  - family-names: "Zuo"
+    given-names: "Chunsheng"
+license: Apache-2.0
+preferred-citation:
+  type: article
+  title: "Rethinking LoRA Memory Through the Lens of KV Cache Compression"
+  authors:
+    - family-names: "Zuo"
+      given-names: "Chunsheng"
+    - family-names: "Wang"
+      given-names: "Liaoyaqi"
+    - family-names: "Jurayj"
+      given-names: "William"
+    - family-names: "Fleshman"
+      given-names: "William"
+    - family-names: "Van Durme"
+      given-names: "Benjamin"
+  year: 2026
+  month: 6
+  doi: "10.48550/arXiv.2606.05698"
+  identifiers:
+    - type: other
+      value: "arXiv:2606.05698"
+  url: "https://arxiv.org/abs/2606.05698"

@@ -1,0 +1,27 @@
+{
+  "dataset": "NarrativeQA",
+  "documents": 20,
+  "questions": 596,
+  "selected_documents": [
+    {"document_id": "60a79c800ff1d55aedfba99108890ecc3632c456", "questions": 30},
+    {"document_id": "04ef491311759e1e853f9c7fc7e8c946c6eab31b", "questions": 30},
+    {"document_id": "aa90091614fb7750bb403710ba663ae3573db691", "questions": 28},
+    {"document_id": "35f4e96cb364cf2204c611a94ca3e42511576ecc", "questions": 30},
+    {"document_id": "9d8ddfe86beba149b3463eeb1bae92919e179fed", "questions": 30},
+    {"document_id": "01aa10d75658840a478ede17631dba875651c370", "questions": 29},
+    {"document_id": "214651e1fc210afdc48cb7272a4d06b79d172708", "questions": 30},
+    {"document_id": "edb92e9d9fe05242da8ead459d53853c8815716b", "questions": 29},
+    {"document_id": "3907cf252b326a524485348ba766c9d55b691ed2", "questions": 30},
+    {"document_id": "4671c4d7815a9646d0408e119b56b08e74a9f2b8", "questions": 29},
+    {"document_id": "4a4f75695025f492d0f8d71cd121afb048bdaf1f", "questions": 30},
+    {"document_id": "e6b90ac408f85b70d4da2ec35b695d5d0f70196f", "questions": 30},
+    {"document_id": "09333c7d604bd412e6aef5d3e56b046ed301c5e5", "questions": 28},
+    {"document_id": "d2794c7cec9e889d2fbfc1b4ca018654ec83e2c6", "questions": 30},
+    {"document_id": "ceb53c6e5f1f89d2f4d43a0d9fa53af7734fa1d4", "questions": 30},
+    {"document_id": "befbd270ccb59942c487104978f95446867b1e94", "questions": 27},
+    {"document_id": "a90970da83bef2b96566608cec4724c7c1da507f", "questions": 29},
+    {"document_id": "58b09dbe61c50f921f8d5d4b8c28183a920bf160", "questions": 29},
+    {"document_id": "8ec2acc82d024a645fe81f51270d6dbba8b7981e", "questions": 28},
+    {"document_id": "571556120960f1940d0aa86b07dab9f9be0ee182", "questions": 40}
+  ]
+}

@@ -1,0 +1,11 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.cache/
+data/narrativeqa/*.jsonl
+data/narrativeqa/*.metadata.json
+data/longhealth/*.jsonl
+adapters/
+results/
+logs/
+wandb/

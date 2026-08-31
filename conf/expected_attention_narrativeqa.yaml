@@ -1,0 +1,15 @@
+defaults:
+  - narrativeqa
+  - _self_
+
+evaluate:
+  methods: [base, forced_adapter]
+  compression_configs:
+    - none
+    - {compression_ratio: 0.8, compression_algorithm: expected_attention, n_future_positions: 512, n_sink: 4, compression_scope: context_only}
+    - {compression_ratio: 0.9, compression_algorithm: expected_attention, n_future_positions: 512, n_sink: 4, compression_scope: context_only}
+    - {compression_ratio: 0.95, compression_algorithm: expected_attention, n_future_positions: 512, n_sink: 4, compression_scope: context_only}
+    - {compression_ratio: 0.99, compression_algorithm: expected_attention, n_future_positions: 512, n_sink: 4, compression_scope: context_only}
+    - {compression_ratio: 0.995, compression_algorithm: expected_attention, n_future_positions: 512, n_sink: 4, compression_scope: context_only}
+
+step: evaluate

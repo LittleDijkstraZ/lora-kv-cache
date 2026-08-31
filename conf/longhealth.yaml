@@ -1,0 +1,114 @@
+defaults:
+  - qa_config_schema
+  - _self_
+
+model:
+  base_model: Qwen/Qwen3-4B
+  instruct_model: Qwen/Qwen3-4B
+  max_seq_length: 32768
+
+lora:
+  r: 16
+  alpha: 32
+  dropout: 0.1
+  share_A: true
+  target_modules: [gate_proj, up_proj, down_proj]
+  layers_to_transform: null
+  lora_init: pissa
+  lora_B_init: zero
+  use_dora: true
+
+training:
+  objective: sft
+  learning_rate: 1.0e-4
+  max_steps: null
+  num_train_epochs: 4
+  per_device_train_batch_size: 4
+  gradient_accumulation_steps: 1
+  weight_decay: 0.001
+  save_epochs: 4
+  input_format: qa_only
+  task: qa_short
+  train_answer_only: true
+  append_eos: false
+  disable_truncation: true
+  fail_on_truncation: true
+  report_to: []
+  mixed_sources:
+    - name: qa
+      kind: synthetic_records
+      input_format: qa_only
+      task: [qa_short]
+      train_answer_only: true
+      append_eos: false
+      sample_weight: 1.0
+
+data:
+  chunk_size: 64
+  overlap_ratio: 0.0
+  num_clusters: 20
+  data_dir: data/longhealth
+  cluster_strategy: metadata_field
+  cluster_metadata_field: patient_id
+  train_from_eval_file: true
+  input_mode: synthetic_qa
+  synthetic_data_dir: null
+
+pipeline:
+  seed: 0
+  num_seeds: 1
+  adapter_dir: null
+  dataset: longhealth
+  skip_steps: []
+
+evaluate:
+  batch_size: 16
+  no_compression_batch_size: 1
+  eval_every_n: 1
+  methods: [base, forced_adapter, forced_adapter_baseprefill, forced_adapter_basescore_adapterprefill]
+  context_modes: [with_context, no_context]
+  adapter_scaling: 2
+  parallel_gpus: true
+  multi_gpu: false
+  disable_truncation: true
+  model_max_length: 32768
+  max_new_tokens: 128
+  skip_existing: false
+  skip_overlength: true
+  results_dir: null
+  eval_file: longhealth.jsonl
+  task: qa_short
+  compressed_generation_mode: context_prefill
+  compression_configs:
+    - none
+    - {compression_ratio: 0.8, chunk_size: 256, sink_size_start: 32, sink_size_end: 32, compression_scope: context_only}
+    - {compression_ratio: 0.9, chunk_size: 256, sink_size_start: 32, sink_size_end: 32, compression_scope: context_only}
+    - {compression_ratio: 0.95, chunk_size: 256, sink_size_start: 32, sink_size_end: 32, compression_scope: context_only}
+    - {compression_ratio: 0.99, chunk_size: 256, sink_size_start: 32, sink_size_end: 32, compression_scope: context_only}
+    - {compression_ratio: 0.995, chunk_size: 256, sink_size_start: 32, sink_size_end: 32, compression_scope: context_only}
+
+synthesize:
+  n_generations: 1
+  pairs_per_call: 4
+  context_window_chunks: 2
+  temperature: 0.4
+  top_p: 0.9
+  max_tokens: 2048
+  tensor_parallel_size: 4
+  gpu_memory_utilization: 0.95
+  max_num_seqs: 32
+  max_model_len: 32768
+  dtype: auto
+  enforce_eager: false
+  attention_backend: FLASH_ATTN
+  overwrite: false
+  max_retries: 2
+
+step: all
+
+hydra:
+  run:
+    dir: ${qa_default_adapter_dir:${pipeline.adapter_dir},${hydra.job.config_name}}
+  output_subdir: .hydra
+  job:
+    chdir: false
